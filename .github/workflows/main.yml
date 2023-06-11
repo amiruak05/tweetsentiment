@@ -1,1 +1,28 @@
+name: Deploy to Heroku
 
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Build, Push and Release a Docker container to Heroku  # Your custom step name
+        uses: akhileshns/heroku-deploy@v3.12.14  # Github action name
+      
+      # The email address associated with your heroku account
+      
+        with:
+          # Provide variables for your heroku app
+          # Heroku API key associated with provided with ur heroku Acc
+          # API key is available under your Heroku Account
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+
+          # Name of the heroku application to which you want to deploy
+          heroku_app_name: "YOUR APP's NAME" #Must be unique in Heroku
+
+          heroku_email: "YOUR EMAIL"
